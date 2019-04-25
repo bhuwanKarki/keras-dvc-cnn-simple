@@ -179,6 +179,7 @@ history = model.fit_generator(train_generator,
                               use_multiprocessing=use_multiprocessing,
                               workers=workers)
 
-fname = "dvc-small-cnn.h5"
-print('Saving model to', fname)
-model.save(fname)
+outputs_dir = os.getenv('VH_OUTPUTS_DIR', './')
+output_file = os.path.join(outputs_dir, 'my_model.h5')
+print('Saving model to %s' % output_file)
+model.save(output_file)
