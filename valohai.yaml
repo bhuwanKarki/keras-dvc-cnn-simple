@@ -1,7 +1,4 @@
 ---
-    /BDA/train/train-set-images.tar.gz
-    /BDA/validation/validation-set-images.tar.gz
-    /BDA/test/test-set-images.tar.gz
 - step:
     name: keras-dvc-cnn-pretrained
     image: tensorflow/tensorflow:1.5.0-devel-gpu
