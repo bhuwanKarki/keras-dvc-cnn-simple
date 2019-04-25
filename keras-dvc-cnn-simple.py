@@ -57,8 +57,12 @@ else:
 # The training dataset consists of 2000 images of dogs and cats, split
 # in half.  In addition, the validation set consists of 1000 images,
 # and the test set of 22000 images.
-
-datapath = "/wrk/karkibhu/dogs-vs-cats/train-2000"
+datapath = os.getenv('VH_INPUTS_DIR', './inputs')
+TRAIN_IMAGES_DIR = os.path.join(datapath 'training-set-images')
+TRAIN_LABELS_DIR = os.path.join(datapath, 'training-set-labels')
+TEST_IMAGES_DIR = os.path.join(datapath, 'test-set-images')
+TEST_LABELS_DIR = os.path.join(datapath, 'test-set-labels')
+#datapath = "/wrk/karkibhu/dogs-vs-cats/train-2000"
 (nimages_train, nimages_validation, nimages_test) = (2000, 1000, 22000)
 
 # ### Data augmentation
