@@ -58,7 +58,7 @@ else:
 # in half.  In addition, the validation set consists of 1000 images,
 # and the test set of 22000 images.
 datapath = os.getenv('VH_INPUTS_DIR', './inputs')
-TRAIN_IMAGES_DIR = os.path.join(datapath 'training-set-images')
+TRAIN_IMAGES_DIR = os.path.join(datapath,'training-set-images')
 TRAIN_LABELS_DIR = os.path.join(datapath, 'training-set-labels')
 TEST_IMAGES_DIR = os.path.join(datapath, 'test-set-images')
 TEST_LABELS_DIR = os.path.join(datapath, 'test-set-labels')
