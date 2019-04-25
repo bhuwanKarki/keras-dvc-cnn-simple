@@ -12,9 +12,9 @@
         default: swift://f8a5dbc8033343aea820c139245afe13/BDA/validation/validation-set-images.tar.gz
 
 - step:
-    name: Train model
+    name: keras-dvc-cnn-simple
     image: tensorflow/tensorflow:1.5.0-devel-gpu
-    command: python keras-dvc-cnn-pretrained.py {parameters}
+    command: python keras-dvc-cnn-simple.py {parameters}
     parameters:
       - name: max_steps
         pass-as: --max_steps={v}
@@ -33,13 +33,11 @@
         default: 0.9
     inputs:
       - name: training-set-images
-        default: swift://f8a5dbc8033343aea820c139245afe13/MNIST_data/train-images-idx3-ubyte.gz
-      - name: training-set-labels
-        default: swift://f8a5dbc8033343aea820c139245afe13/MNIST_data/train-labels-idx1-ubyte.gz
+        default: swift://f8a5dbc8033343aea820c139245afe13/BDA/train/train-set-images.tar.gz
       - name: test-set-images
-        default: swift://f8a5dbc8033343aea820c139245afe13/MNIST_data/t10k-images-idx3-ubyte.gz
-      - name: test-set-labels
-        default: swift://f8a5dbc8033343aea820c139245afe13/MNIST_data/t10k-labels-idx1-ubyte.gz
+        default: swift://f8a5dbc8033343aea820c139245afe13/BDA/test/test-set-images.tar.gz
+      - name: validation-set-images
+        default: swift://f8a5dbc8033343aea820c139245afe13/BDA/validation/validation-set-images.tar.gz
 
 - step:
     name: Worker environment check
