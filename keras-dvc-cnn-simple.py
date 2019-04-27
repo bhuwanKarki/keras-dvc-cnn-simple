@@ -57,12 +57,8 @@ else:
 # The training dataset consists of 2000 images of dogs and cats, split
 # in half.  In addition, the validation set consists of 1000 images,
 # and the test set of 22000 images.
-datapath = os.getenv('VH_INPUTS_DIR', './inputs')
-TRAIN_IMAGES_DIR = os.path.join(datapath,'training-set-images')
-TRAIN_LABELS_DIR = os.path.join(datapath, 'training-set-labels')
-TEST_IMAGES_DIR = os.path.join(datapath, 'test-set-images')
-TEST_LABELS_DIR = os.path.join(datapath, 'test-set-labels')
-#datapath = "/wrk/karkibhu/dogs-vs-cats/train-2000"
+
+datapath = "/tmp/"
 (nimages_train, nimages_validation, nimages_test) = (2000, 1000, 22000)
 
 # ### Data augmentation
@@ -93,7 +89,7 @@ noopgen = ImageDataGenerator(rescale=1./255)
 # TensorBoard event file.
 
 augm_generator = datagen.flow_from_directory(
-        datapath+'/train',  
+        datapath+'train',
         target_size=input_image_size,  
         batch_size=10)
 
@@ -117,21 +113,21 @@ batch_size = 25
 
 print('Train: ', end="")
 train_generator = datagen.flow_from_directory(
-        datapath+'/train',  
+        datapath+'train',
         target_size=input_image_size,
         batch_size=batch_size, 
         class_mode='binary')
 
 print('Validation: ', end="")
 validation_generator = noopgen.flow_from_directory(
-        datapath+'/validation',  
+        datapath+'validation',
         target_size=input_image_size,
         batch_size=batch_size,
         class_mode='binary')
 
 print('Test: ', end="")
 test_generator = noopgen.flow_from_directory(
-        datapath+'/test',  
+        datapath+'test',
         target_size=input_image_size,
         batch_size=batch_size,
         class_mode='binary')
@@ -183,7 +179,6 @@ history = model.fit_generator(train_generator,
                               use_multiprocessing=use_multiprocessing,
                               workers=workers)
 
-outputs_dir = os.getenv('VH_OUTPUTS_DIR', './')
-output_file = os.path.join(outputs_dir, 'my_model.h5')
-print('Saving model to %s' % output_file)
-model.save(output_file)
+fname = "dvc-small-cnn.h5"
+print('Saving model to', fname)
+model.save(fname)
